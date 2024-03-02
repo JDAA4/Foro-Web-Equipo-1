@@ -9,12 +9,17 @@ body {
 
 /*Estilos de la barra de navegacion*/
 .header {
+  position: fixed;
+  width: 100%;
+  height: 10%;
   align-items: center;
   max-width: 90%;
-  margin: 20px auto;
+  margin-left: 5%;
+  margin-top: 1%;
   background-color: #223281;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 }
 
 .search-bar {
@@ -28,6 +33,7 @@ body {
 }
 
 .search-input {
+  width: 20%;
   flex-grow: 1;
   padding: 8px;
   border: none;
@@ -88,25 +94,32 @@ body {
 
 .column-confi{
   order: 1;
+  width: 30%;
   margin-right: 3%;
   margin-top: 5%;
 }
 
 .column {
   order: 2;
-  padding: 20px;
+  margin-top: 5%;
+  margin-left: 7%;
+  width: 60%;
+  padding: 2%;
 }
 
 .column-options {
   order: 3;
-  margin-left: 5%;
+  width: 20%;
+  margin-left: 1%;
   padding: 20px;
   margin-top: 5%;
 }
 
 .options {
+  margin-top: 6%;
+  position: fixed;
   background-color: #242839;
-  padding: 20%;
+  padding: 2%;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -115,6 +128,8 @@ body {
 }
 
 .confi{
+  position: fixed;
+  margin-top: 3%;
   width: max-content;
   background-color: #242839;
   padding: 20px;
@@ -125,9 +140,10 @@ body {
 }
 
 .forum{
-  margin-left: 15%;
+  position: fixed;
+  margin-left: 2%;
   width: max-content;
-  margin-top: 15%;
+  margin-top: 16%;
   background-color: #242839;
   padding: 20px;
   border-radius: 5px;
