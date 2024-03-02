@@ -9,7 +9,7 @@ class User {
     private $conn;
     private $table_name = "User";
 
-    // Propiedades del objeto
+    // Object properties
     public $id;
     public $name;
     public $email;
@@ -33,20 +33,20 @@ class User {
      * @return bool Returns true if the user was created successfully, false otherwise.
      */
     public function create() {
-        // Consulta para insertar un registro
+        // Query to insert a record
         $query = "INSERT INTO " . $this->table_name . " SET name=:name, email=:email, username=:username, passwordHash=:passwordHash, image=:image";
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitizar
+        // Sanitize
         $this->name=htmlspecialchars(strip_tags($this->name));
         $this->email=htmlspecialchars(strip_tags($this->email));
         $this->username=htmlspecialchars(strip_tags($this->username));
         $this->passwordHash=htmlspecialchars(strip_tags($this->passwordHash));
         $this->image=htmlspecialchars(strip_tags($this->image));
 
-        // Enlazar valores
+        // Bind values
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":username", $this->username);
@@ -54,7 +54,7 @@ class User {
         $stmt->bindParam(":passwordHash", $passwordHash);
         $stmt->bindParam(":image", $this->image);
 
-        // Ejecutar la consulta
+        // Execute the query
         if($stmt->execute()) {
             return true;
         }
@@ -68,13 +68,13 @@ class User {
      * @return PDOStatement Returns a PDOStatement object containing the result set.
      */
     public function read() {
-        // Consulta para seleccionar todos los registros
+        // Query to select all records
         $query = "SELECT * FROM " . $this->table_name;
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Ejecutar la consulta
+        // Execute the query
         $stmt->execute();
 
         return $stmt;
@@ -86,13 +86,13 @@ class User {
      * @return bool Returns true if the user was updated successfully, false otherwise.
      */
     public function update() {
-        // Consulta para actualizar un registro
+        // Query to update a record
         $query = "UPDATE " . $this->table_name . " SET name=:name, email=:email, username=:username, passwordHash=:passwordHash, image=:image WHERE id=:id";
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitizar
+        // Sanitize
         $this->name=htmlspecialchars(strip_tags($this->name));
         $this->email=htmlspecialchars(strip_tags($this->email));
         $this->username=htmlspecialchars(strip_tags($this->username));
@@ -100,15 +100,16 @@ class User {
         $this->image=htmlspecialchars(strip_tags($this->image));
         $this->id=htmlspecialchars(strip_tags($this->id));
 
-        // Enlazar valores
+        // Bind values
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":username", $this->username);
-        $stmt->bindParam(":passwordHash", password_hash($this->passwordHash, PASSWORD_BCRYPT));
+        $passwordHash = password_hash($this->passwordHash, PASSWORD_BCRYPT);
+        $stmt->bindParam(":passwordHash", $passwordHash);
         $stmt->bindParam(":image", $this->image);
         $stmt->bindParam(":id", $this->id);
 
-        // Ejecutar la consulta
+        // Execute the query
         if($stmt->execute()) {
             return true;
         }
@@ -122,19 +123,19 @@ class User {
      * @return bool Returns true if the user was deleted successfully, false otherwise.
      */
     public function delete() {
-        // Consulta para eliminar un registro
+        // Query to delete a record
         $query = "DELETE FROM " . $this->table_name . " WHERE id=:id";
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitizar
+        // Sanitize
         $this->id=htmlspecialchars(strip_tags($this->id));
 
-        // Enlazar el id del registro a eliminar
+        // Bind the id of the record to delete
         $stmt->bindParam(":id", $this->id);
 
-        // Ejecutar la consulta
+        // Execute the query
         if($stmt->execute()) {
             return true;
         }
