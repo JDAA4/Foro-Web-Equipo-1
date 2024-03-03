@@ -40,11 +40,11 @@
             <h2> INICIAR SESION</h2>
 
             <br><br>
-            <form action="/login/user/" method="post">
+            <form action="controllers/login.php" method="post">
 
             <div class="input">
                 <i class="fa-solid fa-envelope"></i>
-                <input type="text" class="input1" placeholder="Usuario" id="username" name="username" required>
+                <input type="text" class="input1" placeholder="email" id="email" name="email" required>
             </div>
 
             <div class="input">
@@ -52,7 +52,7 @@
                 <input type="password" class="input1" placeholder="Contraseña" id="password" name="password" required>
             </div>
 
-            <span>No tienes cuenta </span><a  class="aRegister"href="/register">Registrate!</a>
+            <span>No tienes cuenta </span><a  class="aRegister"href="controllers/register.php">Registrate!</a>
    
                 <div class="button">
                     <button class="btn">Iniciar Sesion</button>
