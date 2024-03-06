@@ -16,6 +16,7 @@ body {
   max-width: 90%;
   margin-left: 5%;
   margin-top: 1%;
+  background-color: #223281;
   background-color:transparent;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -43,7 +44,7 @@ body {
 
 .search-bar button {
   position: absolute;
-  margin-left: 58%;
+  margin-left: 65%;
   background-color: transparent;
   border: none;
   border-radius: 5px;
@@ -96,6 +97,7 @@ body {
   order: 1;
   width: 30%;
   margin-right: 3%;
+  margin-top: 5%;
   margin-top: 10vh;
 }
 
@@ -163,7 +165,7 @@ body {
 }
 
 .forum button:hover{
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .forum button img{
@@ -285,7 +287,7 @@ body {
 
 .interactive button:hover{
   background-color: #0059b7;
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 /* Estilos responsivos */
