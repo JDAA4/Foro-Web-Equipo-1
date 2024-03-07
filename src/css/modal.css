@@ -8,23 +8,22 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
-    transition: 500ms;
+    font-family: Arial, sans-serif;
+    animation: gosht 1s forwards;
   }
   
   .modal-content {
     background-color: #3e3e3e;
-    width: 40%;
+    width: 50%;
+    height: 75%;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px;
-    width: 80%;
-    transition: 500ms;
   }
-  
+
   .close {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
@@ -44,6 +43,7 @@
     text-align: center;
     color: white;
     margin-top: 20px;
+    margin-left: 5%;
     margin-bottom: 10px;
 }
 
@@ -51,43 +51,56 @@
     margin-bottom: 15px;
     padding: 8px;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
+    margin-left: 5%;
     background-color: #00000087;
+    color: white;
+    width: 90%;
 }
 
 .modal-content textarea {
     margin-bottom: 15px;
     padding: 8px;
+    margin-left: 5%;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #00000087;
+    color: white;
+    width: 90%;
 }
 
 .modal-content select {
     color: #ccc;
     margin-bottom: 15px;
+    margin-left: 5%;
     padding: 8px;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #00000087;
+    width: 90%;
 }
 
 .modal-content button {
-  width: 50%;
+    width: 40%;
     margin: auto 30%;
-    margin-top: 40%;
-    margin-left: 23%;
-    background-color: #008fee;
+    background-color: #007bff;
     color: #ffffff;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    top: 90%;
+    border-radius: 5px;
     cursor: pointer;
-    transition: 400ms;
 }
 
 .modal-content button:hover {
-    background-color: #8eade7;
-    color: rgb(0, 0, 0);
-    transition: 600ms;
+    background-color: #0056b3;
+}
+
+@keyframes gosht {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
