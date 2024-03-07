@@ -39,6 +39,7 @@ body {
     max-width: 100px;
     max-height: 100px;
 }
+
 .form-container {
     flex: 1;
     display: flex;
@@ -48,51 +49,19 @@ body {
     background-color: #fff;
 }
 
-.form-container h2{
+.form-container h2 {
     position: absolute;
-    font-size: 35px;
-    top: 25%;
+    font-size: 30px;
+    top: 20%;
 }
 
-.form-container h3{
-    top: 65%;
-    margin-left: 2%;
-    font-size: 15px;
-    position: absolute;
-}
-
-.password{
-    top: 56%;
-    position: absolute;
-    text-decoration: none;
-    color:#959595;
-}
-
-.password:hover{
-    color:#000000;
-    text-decoration: underline;
-}
-
-.Register{
-    left: 75%;
-    top: 67%;
-    font-size: 15px;
-    position: absolute;
-    text-decoration: none;
-    color:#959595;
-}
-
-.Register:hover{
-    color:#000000;
-    text-decoration: underline;
-}
-
-form {
+.form-container form {
     max-width: 50%;
     margin: 0 auto;
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -103,13 +72,14 @@ input[type="password"] {
 }
 
 input[type="text"]:hover,
+input[type="email"]:hover,
 input[type="password"]:hover {
     transform: scale(1.1);
 }
 
 input[type="submit"] {
-    margin-left: 65%;
-    width: 40%;
+    margin-top: 10px;
+    width: 50%;
     padding: 10px;
     font-size: 15px;
     background-color: #007bff;
@@ -124,4 +94,22 @@ input[type="submit"]:hover {
     background-color: #0056b3;
     transform: scale(1.1);
 }
+
+.login-link {
+    position: absolute;
+    top: 60%;
+    left: 73%;
+}
+
+.login-link a {
+    margin-left: 15%;
+    color: #959595;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    color:#000000;
+    text-decoration: underline;
+}
+
 
