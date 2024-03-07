@@ -52,7 +52,7 @@ body {
 .form-container h2 {
     position: absolute;
     font-size: 30px;
-    top: 20%;
+    top: 15%;
 }
 
 .form-container form {
@@ -97,7 +97,7 @@ input[type="submit"]:hover {
 
 .login-link {
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 73%;
 }
 
