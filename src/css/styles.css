@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   padding: 0;
@@ -15,7 +16,7 @@ body {
   align-items: center;
   max-width: 90%;
   margin-left: 5%;
-  margin-top: 1%;
+  margin-top: 0%;
   background-color: #223281;
   background-color:transparent;
   border-radius: 20px;
@@ -24,6 +25,7 @@ body {
 }
 
 .search-bar {
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,6 +33,12 @@ body {
   background-color: #242839;
   border-radius: 20px;
   margin-bottom: 20px;
+}
+
+.search-bar i{
+  font-size: 150%;
+  margin-left: 20px;
+  color: white;
 }
 
 .search-input {
@@ -70,14 +78,13 @@ body {
   padding-right: 6%;
   margin-left: 8%;
   color: #fff; 
-  font-family: cursive;
   font-size: 200%;
 }
 
 .logo img{
   max-width: 10%;
   position: absolute;
-  margin-top: -2.3%;
+  margin-top: -1.5%;
   margin-left: -9%;
 }
 
