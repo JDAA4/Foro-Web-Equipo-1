@@ -5,30 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./login.css">
 </head>
 <body>
     <div class="login">
 
         <div class="leftside">
-            <div class="info">
-                <h1>Hola</h1>
+            <div class="fondoSp">
+                <img src="./src/images/Foro.png" alt="">
             </div>
+            
+            <h1>ShareSphere</h1>
+            
         </div>
         
         <div class="loginform">
             <form>
-                <h1> Login </h1>
+                <h1> INICIAR SESION </h1>
 
                 <input type="text" placeholder="Usuario"></input>
 
                 <input type="password" placeholder="Contraseña"></input>
-                <h4>Olvidaste tu contraseña?</h4>
+                <button type="button" class="btnforgoutpass" onclick="submitForm()">Olvidé mi contraseña</button>
         
-                <button type="button" class="btnsend" onclick="submitForm()">Enviar</button>
+                <button type="button" class="btnsend" onclick="submitForm()">Entrar</button>
 
                 
-                <h4>Registrarse...</h4>
+                <button type="button" class="btnregister" onclick="submitForm()">Registrarse</button>
             </form>
         </div>
 
