@@ -60,7 +60,9 @@ body {
     margin: 0 auto;
 }
 
-input[type="text"],
+input[type="name"],
+input[type="lastname"],
+input[type="name-user"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
@@ -71,7 +73,9 @@ input[type="password"] {
     transition: transform 0.3s ease;
 }
 
-input[type="text"]:hover,
+input[type="name"]:hover,
+input[type="lastname"]:hover,
+input[type="name-user"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover {
     transform: scale(1.1);
