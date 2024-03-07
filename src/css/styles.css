@@ -15,7 +15,7 @@ body {
   align-items: center;
   max-width: 90%;
   margin-left: 5%;
-  margin-top: 1%;
+  margin-top: 0%;
   background-color: #223281;
   background-color:transparent;
   border-radius: 20px;
@@ -31,6 +31,12 @@ body {
   background-color: #242839;
   border-radius: 20px;
   margin-bottom: 20px;
+}
+
+.search-bar i{
+  font-size: 150%;
+  margin-left: 20px;
+  color: white;
 }
 
 .search-input {
@@ -77,7 +83,7 @@ body {
 .logo img{
   max-width: 10%;
   position: absolute;
-  margin-top: -2.3%;
+  margin-top: -1.5%;
   margin-left: -9%;
 }
 

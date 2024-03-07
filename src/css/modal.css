@@ -73,9 +73,12 @@
 }
 
 .modal-content button {
+  width: 50%;
     margin: auto 30%;
-    background-color: #eeb300;
-    color: #000000;
+    margin-top: 40%;
+    margin-left: 23%;
+    background-color: #008fee;
+    color: #ffffff;
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -84,7 +87,7 @@
 }
 
 .modal-content button:hover {
-    background-color: #e7d28e;
+    background-color: #8eade7;
     color: rgb(0, 0, 0);
     transition: 600ms;
 }
