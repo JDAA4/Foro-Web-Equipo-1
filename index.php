@@ -1,3 +1,3 @@
 <?php
-header("location:auth/login.html");
+header("location:src/views/login.php");
 ?>
