@@ -87,6 +87,20 @@ body {
     text-decoration: underline;
 }
 
+.visit{
+    left: 67%;
+    top: 75%;
+    font-size: 15px;
+    position: absolute;
+    text-decoration: none;
+    color:#959595;
+}
+
+.visit:hover{
+    color:#9c0000;
+    text-decoration: underline;
+}
+
 form {
     max-width: 50%;
     margin: 0 auto;
