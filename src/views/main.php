@@ -177,5 +177,6 @@
   </svg>
 </button>
 <script src="../js/script.js"></script>
+<script src= "../js/modalMain.js"></script>
 </body>
 </html>
