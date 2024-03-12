@@ -12,13 +12,13 @@ class Subgroup {
     private $table_name = "Subgroup";
 
     // Object properties
-    public $id;
-    public $name;
-    public $description;
-    public $image;
-    public $createdAt;
-    public $updatedAt;
-    public $creatorId;
+    private $id;
+    private $name;
+    private $description;
+    private $image;
+    private $createdAt;
+    private $updatedAt;
+    private $creatorId;
 
     /**
      * Constructor with database connection.
@@ -29,23 +29,58 @@ class Subgroup {
         $this->conn = $db;
     }
 
-    /**
-     * Create a new subgroup.
-     * 
-     * @return bool Returns true if the subgroup was created successfully, false otherwise.
-     */
+    // Getters and setters
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = htmlspecialchars(strip_tags($name));
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function setDescription($description) {
+        $this->description = htmlspecialchars(strip_tags($description));
+    }
+
+    public function getImage() {
+        return $this->image;
+    }
+
+    public function setImage($image) {
+        $this->image = htmlspecialchars(strip_tags($image));
+    }
+
+    public function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    public function getCreatorId() {
+        return $this->creatorId;
+    }
+
+    public function setCreatorId($creatorId) {
+        $this->creatorId = htmlspecialchars(strip_tags($creatorId));
+    }
+
+    // CRUD methods
     public function create() {
         // Query to insert a record
         $query = "INSERT INTO " . $this->table_name . " SET name=:name, description=:description, image=:image, creatorId=:creatorId";
 
         // Prepare the query
         $stmt = $this->conn->prepare($query);
-
-        // Sanitize
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->description = htmlspecialchars(strip_tags($this->description));
-        $this->image = htmlspecialchars(strip_tags($this->image));
-        $this->creatorId = htmlspecialchars(strip_tags($this->creatorId));
 
         // Bind values
         $stmt->bindParam(":name", $this->name);
@@ -54,18 +89,13 @@ class Subgroup {
         $stmt->bindParam(":creatorId", $this->creatorId);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Read all subgroups.
-     * 
-     * @return PDOStatement Returns the result set of all subgroups.
-     */
     public function read() {
         // Query to select all records
         $query = "SELECT * FROM " . $this->table_name;
@@ -79,24 +109,12 @@ class Subgroup {
         return $stmt;
     }
 
-    /**
-     * Update a subgroup.
-     * 
-     * @return bool Returns true if the subgroup was updated successfully, false otherwise.
-     */
     public function update() {
         // Query to update a record
         $query = "UPDATE " . $this->table_name . " SET name=:name, description=:description, image=:image, creatorId=:creatorId WHERE id=:id";
 
         // Prepare the query
         $stmt = $this->conn->prepare($query);
-
-        // Sanitize
-        $this->name = htmlspecialchars(strip_tags($this->name));
-        $this->description = htmlspecialchars(strip_tags($this->description));
-        $this->image = htmlspecialchars(strip_tags($this->image));
-        $this->creatorId = htmlspecialchars(strip_tags($this->creatorId));
-        $this->id = htmlspecialchars(strip_tags($this->id));
 
         // Bind values
         $stmt->bindParam(":name", $this->name);
@@ -106,18 +124,13 @@ class Subgroup {
         $stmt->bindParam(":id", $this->id);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Delete a subgroup.
-     * 
-     * @return bool Returns true if the subgroup was deleted successfully, false otherwise.
-     */
     public function delete() {
         // Query to delete a record
         $query = "DELETE FROM " . $this->table_name . " WHERE id=:id";
@@ -125,17 +138,15 @@ class Subgroup {
         // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitize
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
         // Bind the id of the record to delete
         $stmt->bindParam(":id", $this->id);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 }
+?>
