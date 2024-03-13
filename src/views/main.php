@@ -23,21 +23,23 @@
         <div id="myModal" class="modal">
           <div class="modal-content">
             <span class="close" id="closeBtn">&times;</span>
-            <form>
+            <form action="/controllers/SetPost.php" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="post_creator_id" value="1">
               <label for="tema">Tema:</label>
-              <select id="selector" name="selector">
-                <option value="opcion1">6 Agua Limpia y Saneamineto</option>
-                <option value="opcion2">7 Energia Asequible y No Contaminante</option>
-                <option value="opcion3">14 Vida Submarina</option>
+              <select id="selector" name="post_subgroup_id" required>
+                <option value="1">6 Agua Limpia y Saneamineto</option>
+                <option value="2">7 Energia Asequible y No Contaminante</option>
+                <option value="3">14 Vida Submarina</option>
             </select>
-      
+            <label for="texto">Titulo:</label>
+              <textarea id="texto" name="post_title" rows="1" required placeholder="Titulo..."></textarea>
               <label for="texto">Texto:</label>
-              <textarea id="texto" name="texto" rows="4" required placeholder="Descripcion..."></textarea>
+              <textarea id="texto" name="post_content" rows="4" required placeholder="Descripcion..."></textarea>
       
-              <label for="foto">Foto:</label>
-              <input type="file" id="foto" name="foto" accept="image/*">
+              <label for="foto">Imagen:</label>
+              <input type="file" id="foto" name="image" accept="image/*">
       
-              <button type="button" onclick="submitForm()">Enviar</button>
+              <button type="submit" >Enviar</button>
           </form>
           </div>
         </div>
