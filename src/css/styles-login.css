@@ -27,6 +27,8 @@ body {
 
 .image-container h1{
     position: absolute;
+    width: 40%;
+    height: auto;
     top: 40%;
     left: 10%;
     color: #fff;
@@ -55,14 +57,16 @@ body {
 }
 
 .form-container h3{
-    top: 65%;
-    margin-left: 2%;
+    left: 65%;
+    top: 61%;
+    margin-left: 0%;
     font-size: 15px;
     position: absolute;
 }
 
 .password{
     top: 56%;
+    font-size: 90%;
     position: absolute;
     text-decoration: none;
     color:#959595;
@@ -74,8 +78,8 @@ body {
 }
 
 .Register{
-    left: 75%;
-    top: 67%;
+    left: 70%;
+    top: 66%;
     font-size: 15px;
     position: absolute;
     text-decoration: none;
@@ -88,7 +92,7 @@ body {
 }
 
 .visit{
-    left: 67%;
+    left: 66%;
     top: 75%;
     font-size: 15px;
     position: absolute;
@@ -122,9 +126,11 @@ input[type="password"]:hover {
 }
 
 input[type="submit"] {
-    margin-left: 65%;
-    width: 40%;
+    margin-top: 3%;
+    margin-left: 62%;
+    width: 45%;
     padding: 10px;
+    padding-right: 20px;
     font-size: 15px;
     background-color: #007bff;
     color: #fff;

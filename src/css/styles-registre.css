@@ -16,6 +16,8 @@ body {
     height: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    background-color: #fff;
+
 }
 
 .image-container {
@@ -27,6 +29,8 @@ body {
 
 .image-container h1{
     position: absolute;
+    width: 40%;
+    height: auto;
     top: 40%;
     left: 10%;
     color: #fff;
@@ -44,7 +48,7 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-top: 15%;
     padding: 20px;
     background-color: #fff;
 }
@@ -101,7 +105,7 @@ input[type="submit"]:hover {
 
 .login-link {
     position: absolute;
-    top: 65%;
+    margin-top: -2%;
     left: 73%;
 }
 
