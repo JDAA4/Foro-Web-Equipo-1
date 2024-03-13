@@ -10,18 +10,18 @@ class Account {
     private $table_name = "Account";
 
     // Object properties
-    public $id;
-    public $userId;
-    public $type;
-    public $provider;
-    public $providerAccountId;
-    public $refresh_token;
-    public $access_token;
-    public $expires_at;
-    public $token_type;
-    public $scope;
-    public $id_token;
-    public $session_state;
+    private $id;
+    private $userId;
+    private $type;
+    private $provider;
+    private $providerAccountId;
+    private $refresh_token;
+    private $access_token;
+    private $expires_at;
+    private $token_type;
+    private $scope;
+    private $id_token;
+    private $session_state;
 
     /**
      * Constructor for the Account class.
@@ -32,32 +32,108 @@ class Account {
         $this->conn = $db;
     }
 
-    /**
-     * Creates a new account.
-     *
-     * @return bool Returns true if the account was created successfully, false otherwise.
-     */
+    // Getters and setters
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getUserId() {
+        return $this->userId;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = htmlspecialchars(strip_tags($userId));
+    }
+
+    public function getType() {
+        return $this->type;
+    }
+
+    public function setType($type) {
+        $this->type = htmlspecialchars(strip_tags($type));
+    }
+
+    public function getProvider() {
+        return $this->provider;
+    }
+
+    public function setProvider($provider) {
+        $this->provider = htmlspecialchars(strip_tags($provider));
+    }
+
+    public function getProviderAccountId() {
+        return $this->providerAccountId;
+    }
+
+    public function setProviderAccountId($providerAccountId) {
+        $this->providerAccountId = htmlspecialchars(strip_tags($providerAccountId));
+    }
+
+    public function getRefreshToken() {
+        return $this->refresh_token;
+    }
+
+    public function setRefreshToken($refresh_token) {
+        $this->refresh_token = htmlspecialchars(strip_tags($refresh_token));
+    }
+
+    public function getAccessToken() {
+        return $this->access_token;
+    }
+
+    public function setAccessToken($access_token) {
+        $this->access_token = htmlspecialchars(strip_tags($access_token));
+    }
+
+    public function getExpiresAt() {
+        return $this->expires_at;
+    }
+
+    public function setExpiresAt($expires_at) {
+        $this->expires_at = htmlspecialchars(strip_tags($expires_at));
+    }
+
+    public function getTokenType() {
+        return $this->token_type;
+    }
+
+    public function setTokenType($token_type) {
+        $this->token_type = htmlspecialchars(strip_tags($token_type));
+    }
+
+    public function getScope() {
+        return $this->scope;
+    }
+
+    public function setScope($scope) {
+        $this->scope = htmlspecialchars(strip_tags($scope));
+    }
+
+    public function getIdToken() {
+        return $this->id_token;
+    }
+
+    public function setIdToken($id_token) {
+        $this->id_token = htmlspecialchars(strip_tags($id_token));
+    }
+
+    public function getSessionState() {
+        return $this->session_state;
+    }
+
+    public function setSessionState($session_state) {
+        $this->session_state = htmlspecialchars(strip_tags($session_state));
+    }
+
+    // CRUD methods
     public function create() {
-        // Consulta para insertar un registro
+        // Query to insert a record
         $query = "INSERT INTO " . $this->table_name . " SET userId=:userId, type=:type, provider=:provider, providerAccountId=:providerAccountId, refresh_token=:refresh_token, access_token=:access_token, expires_at=:expires_at, token_type=:token_type, scope=:scope, id_token=:id_token, session_state=:session_state";
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitizar
-        $this->userId = htmlspecialchars(strip_tags($this->userId));
-        $this->type = htmlspecialchars(strip_tags($this->type));
-        $this->provider = htmlspecialchars(strip_tags($this->provider));
-        $this->providerAccountId = htmlspecialchars(strip_tags($this->providerAccountId));
-        $this->refresh_token = htmlspecialchars(strip_tags($this->refresh_token));
-        $this->access_token = htmlspecialchars(strip_tags($this->access_token));
-        $this->expires_at = htmlspecialchars(strip_tags($this->expires_at));
-        $this->token_type = htmlspecialchars(strip_tags($this->token_type));
-        $this->scope = htmlspecialchars(strip_tags($this->scope));
-        $this->id_token = htmlspecialchars(strip_tags($this->id_token));
-        $this->session_state = htmlspecialchars(strip_tags($this->session_state));
-
-        // Enlazar valores
+        // Bind values
         $stmt->bindParam(":userId", $this->userId);
         $stmt->bindParam(":type", $this->type);
         $stmt->bindParam(":provider", $this->provider);
@@ -70,59 +146,35 @@ class Account {
         $stmt->bindParam(":id_token", $this->id_token);
         $stmt->bindParam(":session_state", $this->session_state);
 
-        // Ejecutar la consulta
-        if($stmt->execute()) {
+        // Execute the query
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Retrieves all accounts.
-     *
-     * @return PDOStatement Returns a PDOStatement object containing the result set.
-     */
     public function read() {
-        // Consulta para seleccionar todos los registros
+        // Query to select all records
         $query = "SELECT * FROM " . $this->table_name;
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Ejecutar la consulta
+        // Execute the query
         $stmt->execute();
 
         return $stmt;
     }
 
-    /**
-     * Updates an existing account.
-     *
-     * @return bool Returns true if the account was updated successfully, false otherwise.
-     */
     public function update() {
-        // Consulta para actualizar un registro
+        // Query to update a record
         $query = "UPDATE " . $this->table_name . " SET userId=:userId, type=:type, provider=:provider, providerAccountId=:providerAccountId, refresh_token=:refresh_token, access_token=:access_token, expires_at=:expires_at, token_type=:token_type, scope=:scope, id_token=:id_token, session_state=:session_state WHERE id=:id";
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitizar
-        $this->userId = htmlspecialchars(strip_tags($this->userId));
-        $this->type = htmlspecialchars(strip_tags($this->type));
-        $this->provider = htmlspecialchars(strip_tags($this->provider));
-        $this->providerAccountId = htmlspecialchars(strip_tags($this->providerAccountId));
-        $this->refresh_token = htmlspecialchars(strip_tags($this->refresh_token));
-        $this->access_token = htmlspecialchars(strip_tags($this->access_token));
-        $this->expires_at = htmlspecialchars(strip_tags($this->expires_at));
-        $this->token_type = htmlspecialchars(strip_tags($this->token_type));
-        $this->scope = htmlspecialchars(strip_tags($this->scope));
-        $this->id_token = htmlspecialchars(strip_tags($this->id_token));
-        $this->session_state = htmlspecialchars(strip_tags($this->session_state));
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        // Enlazar valores
+        // Bind values
         $stmt->bindParam(":userId", $this->userId);
         $stmt->bindParam(":type", $this->type);
         $stmt->bindParam(":provider", $this->provider);
@@ -136,37 +188,30 @@ class Account {
         $stmt->bindParam(":session_state", $this->session_state);
         $stmt->bindParam(":id", $this->id);
 
-        // Ejecutar la consulta
-        if($stmt->execute()) {
+        // Execute the query
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Deletes an account.
-     *
-     * @return bool Returns true if the account was deleted successfully, false otherwise.
-     */
     public function delete() {
-        // Consulta para eliminar un registro
+        // Query to delete a record
         $query = "DELETE FROM " . $this->table_name . " WHERE id=:id";
 
-        // Preparar la consulta
+        // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitizar
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        // Enlazar el id del registro a eliminar
+        // Bind the id of the record to delete
         $stmt->bindParam(":id", $this->id);
 
-        // Ejecutar la consulta
-        if($stmt->execute()) {
+        // Execute the query
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 }
+?>

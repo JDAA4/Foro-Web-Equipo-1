@@ -1,11 +1,15 @@
 <?php
 namespace models;
-use PDO;
+use PDO, PDOException;
 
 /**
  * The Votes class represents a vote in the system.
  */
-class Votes extends connection{
+class Votes {
+    private $conn;
+    private $table_name = "Vote";
+
+    // Object properties
     private $id;
     private $type;
     private $userId;
@@ -13,58 +17,105 @@ class Votes extends connection{
     private $commentId;
 
     /**
-     * Constructs a new Votes object.
+     * Constructor for the Votes class.
+     * 
+     * @param PDO $db The database connection.
      */
-    public function __construct(){
-        parent::__construct();
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
-    /**
-     * Inserts a new vote into the database.
-     *
-     * @param string $type The type of the vote.
-     * @param string $userId The ID of the user who made the vote.
-     * @param string|null $postId The ID of the post the vote is for (optional).
-     * @param string|null $commentId The ID of the comment the vote is for (optional).
-     * @return int The ID of the inserted vote.
-     */
-    public function InsertVote(string $type, string $userId, string $postId=null, string $commentId=null){
-        $this->type = $type;
-        $this->userId = $userId;
-        $this->postId = $postId;
-        $this->commentId = $commentId;
-    
-        $sql = "INSERT INTO Vote (type, userId, postId, commentId) VALUES (?, ?, ?, ?)";
-        $insert = $this->conn->prepare($sql);
-        $arrData = array($this->type, $this->userId, $this->postId, $this->commentId);
-        $resInsert = $insert->execute($arrData);
-        $idInsert = $this->conn->lastInsertId();
-        return $idInsert;
+    // Getters and setters
+    public function getId() {
+        return $this->id;
     }
 
-    /**
-     * Retrieves the number of votes for a specific post.
-     *
-     * @param int $postId The ID of the post.
-     * @return array An associative array containing the number of votes.
-     */
-    public function GetVotesByPostId($postId){
-        $sql="SELECT COUNT(*) as votes FROM Vote WHERE postId = $postId";
-        $execute = $this->conn->query($sql);
-        $request = $execute->fetch(PDO::FETCH_ASSOC);
-        return $request;
+    public function getType() {
+        return $this->type;
     }
 
-    /**
-     * Retrieves the number of votes for a specific comment.
-     *
-     * @param int $commentId The ID of the comment.
-     * @return array An associative array containing the number of votes.
-     */
-    public function GetVotesByCommentId($commentId){
-        $sql="SELECT COUNT(*) as votes FROM Vote WHERE commentId = $commentId";
-        $execute = $this->conn->query($sql);
-        $request = $execute->fetch(PDO::FETCH_ASSOC);
-        return $request;
+    public function setType($type) {
+        $this->type = htmlspecialchars(strip_tags($type));
+    }
+
+    public function getUserId() {
+        return $this->userId;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = htmlspecialchars(strip_tags($userId));
+    }
+
+    public function getPostId() {
+        return $this->postId;
+    }
+
+    public function setPostId($postId) {
+        $this->postId = htmlspecialchars(strip_tags($postId));
+    }
+
+    public function getCommentId() {
+        return $this->commentId;
+    }
+
+    public function setCommentId($commentId) {
+        $this->commentId = htmlspecialchars(strip_tags($commentId));
+    }
+
+    // Insert a new vote
+    public function insertVote() {
+        // Query to insert a vote
+        $query = "INSERT INTO " . $this->table_name . " (type, userId, postId, commentId) VALUES (:type, :userId, :postId, :commentId)";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Bind values
+        $stmt->bindParam(":type", $this->type);
+        $stmt->bindParam(":userId", $this->userId);
+        $stmt->bindParam(":postId", $this->postId);
+        $stmt->bindParam(":commentId", $this->commentId);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+
+        return false;
+    }
+
+    // Get votes by post ID
+    public function getVotesByPostId($postId) {
+        // Query to count votes for a post
+        $query = "SELECT COUNT(*) as votes FROM " . $this->table_name . " WHERE postId = :postId";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Bind value
+        $stmt->bindParam(":postId", $postId);
+
+        // Execute the query
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Get votes by comment ID
+    public function getVotesByCommentId($commentId) {
+        // Query to count votes for a comment
+        $query = "SELECT COUNT(*) as votes FROM " . $this->table_name . " WHERE commentId = :commentId";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Bind value
+        $stmt->bindParam(":commentId", $commentId);
+
+        // Execute the query
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
+?>

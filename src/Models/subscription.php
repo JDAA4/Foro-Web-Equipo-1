@@ -12,10 +12,10 @@ class Subscription {
     private $table_name = "Subscription";
 
     // Object properties
-    public $userId;
-    public $subgroupId;
-    public $createdAt;
-    public $updatedAt;
+    private $userId;
+    private $subgroupId;
+    private $createdAt;
+    private $updatedAt;
 
     /**
      * Constructor with the database connection.
@@ -26,11 +26,32 @@ class Subscription {
         $this->conn = $db;
     }
 
-    /**
-     * Create a new subscription.
-     * 
-     * @return bool Returns true if the subscription was created successfully, false otherwise.
-     */
+    // Getters and setters
+    public function getUserId() {
+        return $this->userId;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = htmlspecialchars(strip_tags($userId));
+    }
+
+    public function getSubgroupId() {
+        return $this->subgroupId;
+    }
+
+    public function setSubgroupId($subgroupId) {
+        $this->subgroupId = htmlspecialchars(strip_tags($subgroupId));
+    }
+
+    public function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    // CRUD methods
     public function create() {
         // Query to insert a record
         $query = "INSERT INTO " . $this->table_name . " SET userId=:userId, subgroupId=:subgroupId";
@@ -38,27 +59,18 @@ class Subscription {
         // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitize
-        $this->userId = htmlspecialchars(strip_tags($this->userId));
-        $this->subgroupId = htmlspecialchars(strip_tags($this->subgroupId));
-
         // Bind values
         $stmt->bindParam(":userId", $this->userId);
         $stmt->bindParam(":subgroupId", $this->subgroupId);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Read all subscriptions.
-     * 
-     * @return PDOStatement Returns the result set of all subscriptions.
-     */
     public function read() {
         // Query to select all records
         $query = "SELECT * FROM " . $this->table_name;
@@ -72,11 +84,6 @@ class Subscription {
         return $stmt;
     }
 
-    /**
-     * Update a subscription.
-     * 
-     * @return bool Returns true if the subscription was updated successfully, false otherwise.
-     */
     public function update() {
         // Query to update a record
         $query = "UPDATE " . $this->table_name . " SET userId=:userId, subgroupId=:subgroupId WHERE userId=:userId AND subgroupId=:subgroupId";
@@ -84,27 +91,18 @@ class Subscription {
         // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitize
-        $this->userId = htmlspecialchars(strip_tags($this->userId));
-        $this->subgroupId = htmlspecialchars(strip_tags($this->subgroupId));
-
         // Bind values
         $stmt->bindParam(":userId", $this->userId);
         $stmt->bindParam(":subgroupId", $this->subgroupId);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Delete a subscription.
-     * 
-     * @return bool Returns true if the subscription was deleted successfully, false otherwise.
-     */
     public function delete() {
         // Query to delete a record
         $query = "DELETE FROM " . $this->table_name . " WHERE userId=:userId AND subgroupId=:subgroupId";
@@ -112,19 +110,16 @@ class Subscription {
         // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitize
-        $this->userId = htmlspecialchars(strip_tags($this->userId));
-        $this->subgroupId = htmlspecialchars(strip_tags($this->subgroupId));
-
         // Bind values
         $stmt->bindParam(":userId", $this->userId);
         $stmt->bindParam(":subgroupId", $this->subgroupId);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 }
+?>

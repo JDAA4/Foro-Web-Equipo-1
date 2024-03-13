@@ -10,14 +10,14 @@ class Comment {
     private $table_name = "Comment";
 
     // Object properties
-    public $id;
-    public $content;
-    public $image;
-    public $createdAt;
-    public $updatedAt;
-    public $creatorId;
-    public $postId;
-    public $replyToId;
+    private $id;
+    private $content;
+    private $image;
+    private $createdAt;
+    private $updatedAt;
+    private $creatorId;
+    private $postId;
+    private $replyToId;
 
     /**
      * Constructor for the Comment class.
@@ -28,24 +28,66 @@ class Comment {
         $this->conn = $db;
     }
 
-    /**
-     * Creates a new comment.
-     * 
-     * @return bool Returns true if the comment was created successfully, false otherwise.
-     */
+    // Getters and setters
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getContent() {
+        return $this->content;
+    }
+
+    public function setContent($content) {
+        $this->content = htmlspecialchars(strip_tags($content));
+    }
+
+    public function getImage() {
+        return $this->image;
+    }
+
+    public function setImage($image) {
+        $this->image = htmlspecialchars(strip_tags($image));
+    }
+
+    public function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    public function getCreatorId() {
+        return $this->creatorId;
+    }
+
+    public function setCreatorId($creatorId) {
+        $this->creatorId = htmlspecialchars(strip_tags($creatorId));
+    }
+
+    public function getPostId() {
+        return $this->postId;
+    }
+
+    public function setPostId($postId) {
+        $this->postId = htmlspecialchars(strip_tags($postId));
+    }
+
+    public function getReplyToId() {
+        return $this->replyToId;
+    }
+
+    public function setReplyToId($replyToId) {
+        $this->replyToId = htmlspecialchars(strip_tags($replyToId));
+    }
+
+    // CRUD methods
     public function create() {
         // Query to insert a record
         $query = "INSERT INTO " . $this->table_name . " SET content=:content, image=:image, creatorId=:creatorId, postId=:postId, replyToId=:replyToId";
 
         // Prepare the query
         $stmt = $this->conn->prepare($query);
-
-        // Sanitize
-        $this->content = htmlspecialchars(strip_tags($this->content));
-        $this->image = htmlspecialchars(strip_tags($this->image));
-        $this->creatorId = htmlspecialchars(strip_tags($this->creatorId));
-        $this->postId = htmlspecialchars(strip_tags($this->postId));
-        $this->replyToId = htmlspecialchars(strip_tags($this->replyToId));
 
         // Bind values
         $stmt->bindParam(":content", $this->content);
@@ -55,18 +97,13 @@ class Comment {
         $stmt->bindParam(":replyToId", $this->replyToId);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Reads all comments.
-     * 
-     * @return PDOStatement Returns the result set of all comments.
-     */
     public function read() {
         // Query to select all records
         $query = "SELECT * FROM " . $this->table_name;
@@ -80,25 +117,12 @@ class Comment {
         return $stmt;
     }
 
-    /**
-     * Updates an existing comment.
-     * 
-     * @return bool Returns true if the comment was updated successfully, false otherwise.
-     */
     public function update() {
         // Query to update a record
         $query = "UPDATE " . $this->table_name . " SET content=:content, image=:image, creatorId=:creatorId, postId=:postId, replyToId=:replyToId WHERE id=:id";
 
         // Prepare the query
         $stmt = $this->conn->prepare($query);
-
-        // Sanitize
-        $this->content = htmlspecialchars(strip_tags($this->content));
-        $this->image = htmlspecialchars(strip_tags($this->image));
-        $this->creatorId = htmlspecialchars(strip_tags($this->creatorId));
-        $this->postId = htmlspecialchars(strip_tags($this->postId));
-        $this->replyToId = htmlspecialchars(strip_tags($this->replyToId));
-        $this->id = htmlspecialchars(strip_tags($this->id));
 
         // Bind values
         $stmt->bindParam(":content", $this->content);
@@ -109,18 +133,13 @@ class Comment {
         $stmt->bindParam(":id", $this->id);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Deletes a comment.
-     * 
-     * @return bool Returns true if the comment was deleted successfully, false otherwise.
-     */
     public function delete() {
         // Query to delete a record
         $query = "DELETE FROM " . $this->table_name . " WHERE id=:id";
@@ -128,17 +147,15 @@ class Comment {
         // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitize
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
         // Bind the id of the record to delete
         $stmt->bindParam(":id", $this->id);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 }
+?>

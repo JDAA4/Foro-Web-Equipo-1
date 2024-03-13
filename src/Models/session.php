@@ -10,13 +10,13 @@ class Session {
     private $table_name = "Session";
 
     // Object properties
-    public $id;
-    public $userId;
-    public $expires;
-    public $sessionToken;
-    public $accessToken;
-    public $createdAt;
-    public $updatedAt;
+    private $id;
+    private $userId;
+    private $expires;
+    private $sessionToken;
+    private $accessToken;
+    private $createdAt;
+    private $updatedAt;
 
     /**
      * Constructor for the Session class.
@@ -27,25 +27,58 @@ class Session {
         $this->conn = $db;
     }
 
-    /**
-     * Creates a new session.
-     * 
-     * @return bool Returns true if the session was created successfully, false otherwise.
-     */
+    // Getters and setters
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getUserId() {
+        return $this->userId;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = htmlspecialchars(strip_tags($userId));
+    }
+
+    public function getExpires() {
+        return $this->expires;
+    }
+
+    public function setExpires($expires) {
+        $this->expires = htmlspecialchars(strip_tags($expires));
+    }
+
+    public function getSessionToken() {
+        return $this->sessionToken;
+    }
+
+    public function setSessionToken($sessionToken) {
+        $this->sessionToken = htmlspecialchars(strip_tags($sessionToken));
+    }
+
+    public function getAccessToken() {
+        return $this->accessToken;
+    }
+
+    public function setAccessToken($accessToken) {
+        $this->accessToken = htmlspecialchars(strip_tags($accessToken));
+    }
+
+    public function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    // CRUD methods
     public function create() {
         // Query to insert a record
         $query = "INSERT INTO " . $this->table_name . " SET userId=:userId, expires=:expires, sessionToken=:sessionToken, accessToken=:accessToken, createdAt=:createdAt, updatedAt=:updatedAt";
 
         // Prepare the query
         $stmt = $this->conn->prepare($query);
-
-        // Sanitize
-        $this->userId = htmlspecialchars(strip_tags($this->userId));
-        $this->expires = htmlspecialchars(strip_tags($this->expires));
-        $this->sessionToken = htmlspecialchars(strip_tags($this->sessionToken));
-        $this->accessToken = htmlspecialchars(strip_tags($this->accessToken));
-        $this->createdAt = htmlspecialchars(strip_tags($this->createdAt));
-        $this->updatedAt = htmlspecialchars(strip_tags($this->updatedAt));
 
         // Bind values
         $stmt->bindParam(":userId", $this->userId);
@@ -56,18 +89,13 @@ class Session {
         $stmt->bindParam(":updatedAt", $this->updatedAt);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Reads all sessions from the database.
-     * 
-     * @return PDOStatement Returns a PDOStatement object containing the result set.
-     */
     public function read() {
         // Query to select all records
         $query = "SELECT * FROM " . $this->table_name;
@@ -81,26 +109,12 @@ class Session {
         return $stmt;
     }
 
-    /**
-     * Updates an existing session.
-     * 
-     * @return bool Returns true if the session was updated successfully, false otherwise.
-     */
     public function update() {
         // Query to update a record
         $query = "UPDATE " . $this->table_name . " SET userId=:userId, expires=:expires, sessionToken=:sessionToken, accessToken=:accessToken, createdAt=:createdAt, updatedAt=:updatedAt WHERE id=:id";
 
         // Prepare the query
         $stmt = $this->conn->prepare($query);
-
-        // Sanitize
-        $this->userId = htmlspecialchars(strip_tags($this->userId));
-        $this->expires = htmlspecialchars(strip_tags($this->expires));
-        $this->sessionToken = htmlspecialchars(strip_tags($this->sessionToken));
-        $this->accessToken = htmlspecialchars(strip_tags($this->accessToken));
-        $this->createdAt = htmlspecialchars(strip_tags($this->createdAt));
-        $this->updatedAt = htmlspecialchars(strip_tags($this->updatedAt));
-        $this->id = htmlspecialchars(strip_tags($this->id));
 
         // Bind values
         $stmt->bindParam(":userId", $this->userId);
@@ -112,18 +126,13 @@ class Session {
         $stmt->bindParam(":id", $this->id);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 
-    /**
-     * Deletes a session from the database.
-     * 
-     * @return bool Returns true if the session was deleted successfully, false otherwise.
-     */
     public function delete() {
         // Query to delete a record
         $query = "DELETE FROM " . $this->table_name . " WHERE id=:id";
@@ -131,17 +140,15 @@ class Session {
         // Prepare the query
         $stmt = $this->conn->prepare($query);
 
-        // Sanitize
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
         // Bind the id of the record to delete
         $stmt->bindParam(":id", $this->id);
 
         // Execute the query
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         }
 
         return false;
     }
 }
+?>
