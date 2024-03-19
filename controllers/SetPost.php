@@ -1,7 +1,7 @@
 <?php
     namespace controllers;
     require_once("../autoload.php");
-    use Models\{posts};
+    use Models\posts;
     $post = new posts();
     if(!isset($_POST['post_title']) or !isset($_POST['post_content']) or !isset($_POST['post_creator_id']) or !isset($_POST['post_subgroup_id'])){
         error_log("Error: No se han recibido los datos necesarios");
