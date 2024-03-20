@@ -69,15 +69,13 @@ body {
     padding-right: 6%;
     margin-left: 8%;
     color: #fff; 
-    font-family: cursive;
     font-size: 200%;
   }
   
   .logo img{
-    max-width: 10%;
-    position: absolute;
-    margin-top: -2.3%;
-    margin-left: -9%;
+    max-width: 4%;
+  position: absolute;
+  margin-left: -5%;
   }
   
   /*contenedor de la pagina*/

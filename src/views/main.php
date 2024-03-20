@@ -20,7 +20,7 @@ $postList = $posts->GetPosts();
 <body>
 <div class="header">
     <div class="search-bar">
-        <div class="logo" href="#"><img src="../images/Foro.png" class="img">ShareSphere</div>
+        <div class="logo" href="#"><img src="../images/Logo-cut.png" class="img">ShareSphere</div>
         <input type="text" class="search-input" placeholder="Buscar...">
         
         <button id="modalBtn">

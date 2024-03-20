@@ -21,7 +21,7 @@
         <h1>Comunidad global, impacto local</h1>
     </div>
     <div class="form-container">
-        <img src="../images/Foro.png" class="logo">
+        <img src="../images/Logo.png" class="logo">
         <h2>Registrarse en Sheresphere</h2>
         <form action="../../controllers/funtion_register.php" method="post">
             <input type="name" id="name" name="name" class="input-field" placeholder="Nombre" required>
