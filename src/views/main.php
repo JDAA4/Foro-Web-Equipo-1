@@ -86,10 +86,12 @@ $postList = $posts->GetPosts();
 <!-- INPUTS -->
     <div class="column">
       <?php foreach($postList as $post){?>
+        <?php $username = $posts->GetUserById(filter_var($post['creatorId'], FILTER_SANITIZE_STRING));?>
         <div class="box-post">
             <div class="inter">
                 <h4><?php echo $post['title'] ?></h4>
                 <h5><?php echo $post['content'] ?></h5>
+                <h5><?php echo $username['username'] ?></h5>
                 <?php if($post['image'] != null){ ?>
                     <img src="/public/images_posts/<?php echo $post['image'] ?>" alt="Imagen de la publicacion">
                 <?php } ?>

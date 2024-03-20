@@ -88,5 +88,11 @@ class posts extends connection{
         $request = $execute->fetchall(PDO::FETCH_COLUMN, 0);
         return $request;
     }
+    public function GetUserById( string $id){
+        $sql="SELECT username FROM user WHERE id = $id";
+        $execute = $this->conn->query($sql);
+        $request = $execute->fetch(PDO::FETCH_ASSOC);
+        return $request;
+    }
 }
 ?>
