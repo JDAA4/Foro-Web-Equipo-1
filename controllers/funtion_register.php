@@ -52,11 +52,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                     // Ejecutamos la consulta
                     $consulta->execute();
     
-                    // Redireccionamos a la página principal
-                    echo "<script>
-                        alert('Cuenta creada correctamente');
-                        window.location.href = '../src/views/login.php';
-                    </script>";
+                    // Enviamos el correo de confirmación
+                    $to = $email;
+                    $subject = "Confirmación de creación de cuenta";
+                    $message = "Cuenta creada correctamente";
+                    $headers = "From: alansanmillanr@gmail.com";
+
+                    if(mail($to, $subject, $message, $headers))
+                    {
+                        echo "<script>
+                            alert('Cuenta creada correctamente. Se ha enviado un correo de confirmación.');
+                            window.location.href = '../src/views/login.php';
+                        </script>";
+                    }
+                    else
+                    {
+                        echo "<script>
+                            alert('Cuenta creada correctamente. Pero no se pudo enviar el correo de confirmación.');
+                            window.location.href = '../src/views/login.php';
+                        </script>";
+                    }
                     exit();
                 } 
                 catch (PDOException $e) 
