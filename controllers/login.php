@@ -1,19 +1,10 @@
 <?php
-    session_start();// Iniciar la sesión
-    if(isset($_SESSION['email']))
-    {
-        header("Location:../src/views/main.php");
-    }
-?>
-
-<?php
 
 require_once('../src/Models/conexion.php');
 
 $conn = new conexion();
 
 $pdo = $conn->getPdo();
-
 
 // Verifica si se envió el formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
@@ -45,6 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 {
                     echo "<script>alert('Los datos ingresados son incorrectos.'); window.history.back();</script>";
                 }
+            } else 
+            {
+                echo "<script>alert('El correo electrónico no está registrado.'); window.location.href = '../src/views/login.php';</script>";
             }
         } catch (PDOException $e) 
         {
