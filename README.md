@@ -11,6 +11,7 @@ This project is aligned with the [UNESCO's Sustainable Development Goals (SDGs)]
 
 These themes guide the forum's content and discussions, encouraging users to engage in meaningful dialogues about these critical global challenges.
 
+![Demo del Foro](/public/assets/SS.gif)
 ## Technologies Utilized
 The platform is built using a robust stack of web technologies to ensure a dynamic, responsive, and secure user experience. The key technologies include:
 
